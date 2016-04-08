@@ -1,0 +1,23 @@
+{
+  "name": "sample2",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "CairudinRamos <cairudin.16@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-toastr": "^1.7.0",
+    "angular-ui-router": "^0.2.18",
+    "angular": "^1.5.3",
+    "bootstrap": "^3.3.6"
+  }
+}

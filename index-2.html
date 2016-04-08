@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>MY APP</title>
+<link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="./app/css/style.css" rel="stylesheet">
+<!-- <link rel="stylesheet" href="css2/style1.css" type="text/css" media="screen" /> -->
+<link rel="stylesheet" href="app/css/styles.css" type="text/css" media="screen" />
+
+<body id="project-dash">
+    <div class="sidebar sidebar-dash flex-column">
+        <side-bar></side-bar>
+    </div>
+    <div id="dash-content" class="flex-column">
+        <nav-header id= "header"></nav-header>
+        <div id="content-view">
+            <div <div ui-view></div>
+        </div>
+        <!--  <div id="dash-content" class="flex-column">
+        <nav-header></nav-header>
+        <div class="col-md-12">
+            <div class="col-md-2">
+                <side-bar></side-bar>
+            </div>
+            <div class="col-md-9">
+                <div ui-view></div>
+            </div>
+        </div>
+    </div> -->
+    </div>
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="./app/myApp.js"></script>
+    <script src="./app/Directives/header/header.js"></script>
+    <script src="./app/Directives/sidebar/sidebar.js"></script>
+    <script src="./app/view/Analytic/analytic.js"></script>
+
+
+</html>

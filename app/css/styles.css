@@ -1,0 +1,64 @@
+#header {
+    background-color: rgba(24, 87, 255, 0.92)!important;
+}
+
+body {
+    background-color: #f5f5f5 !important;
+}
+
+.link-dash {
+    color: #FCFDFF !important;
+}
+
+.sidebar {
+    background-color: rgb(11, 30, 181) !important;
+}
+
+
+/*.sidebar {
+    
+    background-color: #124E8A !important;
+
+}*/
+
+.icon-app-push,
+.icon-app-overview,
+.icon-app-analytics,
+.icon-app-deploy,
+.icon-app-creator,
+.icon-app-config,
+.icon-app-users,
+.icon-apps,
+.icon-app-package {
+    background-image: url('./img/icons-sidebar-28x28.png') !important;
+}
+
+#content-view {
+    background-color: #FFFFFF !important;
+}
+
+.link-dash {
+    color: #FFFFFF !important;
+}
+
+#breadcrumbs span {
+    color: #f5f5f5 !important;
+}
+
+.nav-sidebar-dash .nav-sidebar-btn {
+    color: #f5f5f5 !important;
+}
+
+#featured .feature {
+    background: #3782fe !important;
+}
+
+.nav>li>.link-dash:hover,
+.nav>li>.link-dash:focus {
+    color: #e5e5e5 !important;
+    background-color: #0F0F0F !important;
+}
+
+@media (min-width: 1200px) .container {
+    width: 1000px !important;
+}

@@ -1,0 +1,18 @@
+<header id= "header">
+    <div id="breadcrumbs">
+        <span ng-repeat="path in _paths">
+            <span ng-if="!$first">Info</span>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+        <li> <a class="link-dash" ng-href="">Docs</a> </li>
+        <li> <a class="link-dash" href="">Support</a> </li>
+        <li>
+            <user-menu>
+                <li>
+                    <a class="link-dash" href="">LuckyBoy</a>
+                </li>
+            </user-menu>
+        </li>
+    </ul>
+    <subtabs></subtabs>
+</header>
