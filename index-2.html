@@ -10,15 +10,18 @@
 <link href="./app/css/style.css" rel="stylesheet">
 <!-- <link rel="stylesheet" href="css2/style1.css" type="text/css" media="screen" /> -->
 <link rel="stylesheet" href="app/css/styles.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" />
 
 <body id="project-dash">
     <div class="sidebar sidebar-dash flex-column">
         <side-bar></side-bar>
     </div>
     <div id="dash-content" class="flex-column">
-        <nav-header id= "header"></nav-header>
-        <div id="content-view">
-            <div <div ui-view></div>
+        <nav-header id="header"></nav-header>
+        <div id="content-view" class="ng-scope">
+            <div class="content">
+                <div <div ui-view></div>
+            </div>
         </div>
         <!--  <div id="dash-content" class="flex-column">
         <nav-header></nav-header>
@@ -35,9 +38,8 @@
     <script src="./bower_components/angular/angular.min.js"></script>
     <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="./app/myApp.js"></script>
-    <script src="./app/Directives/header/header.js"></script>
-    <script src="./app/Directives/sidebar/sidebar.js"></script>
+    <script src="./app/directives/header/header.js"></script>
+    <script src="./app/directives/sidebar/sidebar.js"></script>
     <script src="./app/view/Analytic/analytic.js"></script>
-
 
 </html>
