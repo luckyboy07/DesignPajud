@@ -1,5 +1,5 @@
 #header {
-    background-color: rgba(24, 87, 255, 0.92)!important;
+    background-color: #FFFFFF !important;
 }
 
 body {
@@ -7,11 +7,11 @@ body {
 }
 
 .link-dash {
-    color: #FCFDFF !important;
+    color: #93969a !important;
 }
 
 .sidebar {
-    background-color: rgb(11, 30, 181) !important;
+    background-color: #393F4A !important;
 }
 
 
@@ -34,11 +34,7 @@ body {
 }
 
 #content-view {
-    background-color: #FFFFFF !important;
-}
-
-.link-dash {
-    color: #FFFFFF !important;
+    background-color: #E8EBF1 !important;
 }
 
 #breadcrumbs span {
@@ -61,4 +57,16 @@ body {
 
 @media (min-width: 1200px) .container {
     width: 1000px !important;
+}
+
+.navbar-default {
+    background-color: #4B515B !important;
+    border-color: #4B515B !important;
+}
+.navbar-default .navbar-brand {
+    color: #FFFFFF !important;
+}
+.menu-panel .panel-menu ul li i {
+    
+    background-image: url('./img/app-settings-icons.png') !important;
 }

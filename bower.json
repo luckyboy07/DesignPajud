@@ -18,6 +18,8 @@
     "angular-toastr": "^1.7.0",
     "angular-ui-router": "^0.2.18",
     "angular": "^1.5.3",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "angular-morris-chart": "^1.2.0",
+    "restangular": "^1.5.2"
   }
 }
