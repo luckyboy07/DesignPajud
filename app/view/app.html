@@ -10,10 +10,23 @@
         </div>
     </div>
 </body> -->
-<div class="sidebar sidebar-dash flex-column">
-    <side-bar></side-bar>
-</div>
-<div id="dash-content" class="flex-column">
-    <nav-header id="header"></nav-header>
-    <div ui-view name="appView"></div>
+<div id="page-wrapper" class="open">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar" ng-nicescroll>
+            <li class="sidebar-main">
+                <a href="">
+                    Dashboard 
+                    
+                </a>
+            </li>
+            <side-bar></side-bar>
+        </ul>
+    </div>
+    <div id="content-wrapper">
+        <div class="page-content">
+            <!-- Header Bar -->
+            <nav-header></nav-header>
+        </div>
+        <div ui-view name="appView"></div>
+    </div>
 </div>

@@ -25,7 +25,8 @@ angular.module('myApp', ['ui.router', 'angular.morris-chart', 'restangular'])
                     'appView': {
                         templateUrl: 'app/view/analytic/analytic.html'
                     }
-                }
+                },
+                controller: 'subscriptionDetailCtrl'
                 
             })
             .state('app.deploy', {

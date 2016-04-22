@@ -5,6 +5,10 @@ angular.module('myApp')
         return {
             getSubscriptionAccount: function() {
                 return Restangular.all('subscriptionaccounts' ).customGET();
+            },
+            getAccountDetails : function(sr_id){
+            	return Restangular.all('subscriptionaccounts').customGET(sr_id);
+
             }
 
         };
