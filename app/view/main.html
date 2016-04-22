@@ -1,14 +1,13 @@
-
-    <div id="dash-content" class="flex-column">
-        <nav-header id="header"></nav-header>
-        <!-- <div id="content-view">
+<!-- <div id="content-view">
             <div <div ui-view></div>
         </div> -->
-        <main class="container ">
+<div id="content-view" class="ng-scope">
+    <div class="content">
+        <main class="container page-themes">
             <div class="category-list">
                 <div class="category-header">
                     <hgroup>
-                        <h1>QWWASDAS</h1>
+                        <h1>List of Accounts</h1>
                     </hgroup>
                     <ul role="tab-list">
                         <label class="form-group">
@@ -19,11 +18,17 @@
             </div>
             <footer class="container">
                 <div id="featured">
-                    <a href="index-2.html" class="feature">AWDASDASDASD</a>
+                    <div class="col-lg-4 col-xs-6" ng-repeat="account in accounts">
+                        <div class="feature">
+                            <a ng-click="getAccountDetail(account.sr_id)" class="feature">{{account.company_name}}</a>
+                        </div>
+                    </div>
                 </div>
             </footer>
         </main>
-        <!--  <div id="dash-content" class="flex-column">
+    </div>
+</div>
+<!--  <div id="dash-content" class="flex-column">
         <nav-header></nav-header>
         <div class="col-md-12">
             <div class="col-md-2">
@@ -34,4 +39,3 @@
             </div>
         </div>
     </div> -->
-    </div>

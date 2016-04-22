@@ -10,41 +10,33 @@
     </title>
     <!--  <link href="bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./app/css/style.css" rel="stylesheet">
+    <link href="app/css/style.css" rel="stylesheet">
     <!-- <link href="css/custom_style.css?v=3" rel="stylesheet"> -->
     <!-- <link href="css/styles.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="app/css/styles.css" type="text/css" media="screen" />
 </head>
 
-<body>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/raphael/raphael.min.js"></script>
-    <script src="bower_components/morris.js/morris.min.js"></script>
-    <script src="bower_components/lodash/dist/lodash.min.js"></script>
-    <!-- Angular Lib -->
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="bower_components/angular-morris-chart/src/angular-morris-chart.min.js"></script>
-    <script src="bower_components/restangular/dist/restangular.min.js"></script>
-    <!-- Angular -->
-    <script src="app/myApp.js"></script>
-    <script src="app/directives/header/header.js"></script>
-    <script src="app/directives/sidebar/sidebar.js"></script>
-    <script src="app/controllers/analytics.js"></script>
-    <!-- *
-    *
-    *
-    *
-    *
-    * 
-    * UIVIEW
-    *
-    *
-    *
-    *
-    *
-    * -->
-    <div ui-view></div>
+<body id="project-dash">
+    <div id="content-view" class="flex-column">
+        <nav-header></nav-header>
+        <div ui-view></div>
+    </div>
 </body>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/raphael/raphael.min.js"></script>
+<script src="bower_components/morris.js/morris.min.js"></script>
+<script src="bower_components/lodash/dist/lodash.min.js"></script>
+<!-- Angular Lib -->
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="bower_components/angular-morris-chart/src/angular-morris-chart.min.js"></script>
+<script src="bower_components/restangular/dist/restangular.min.js"></script>
+<!-- Angular -->
+<script src="app/myApp.js"></script>
+<script src="app/directives/header/header.js"></script>
+<script src="app/directives/sidebar/sidebar.js"></script>
+<script src="app/controllers/account.js"></script>
+<script src="scripts/services/subscriber.js"></script>
+<script src="app/controllers/analytic.js"></script>
 
 </html>

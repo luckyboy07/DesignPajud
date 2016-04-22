@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('myApp');
-	.factory('subscription', function subscription(Restangular,API_URL,API_VERSION){
-		return {
-			getSubscriptionAccount: function() {
-                return Restangular.all('subscriptionaccounts').customGET();
+angular.module('myApp')
+    .factory('subscriptionFctry', function(Restangular, API_URL) {
+        return {
+            getSubscriptionAccount: function() {
+                return Restangular.all('subscriptionaccounts' ).customGET();
             }
 
-		};
+        };
 
-	})
+    })

@@ -5,25 +5,28 @@ angular.module('myApp', ['ui.router', 'angular.morris-chart', 'restangular'])
     .constant('API_VERSION', '/analytics/1.0')
     .config(function($provide, $stateProvider, $urlRouterProvider, API_URL, API_VERSION, RestangularProvider) {
         $provide.value('baseURL', API_URL);
-        RestangularProvider.setBaseUrl(API_URL + API_VERSION);
+        RestangularProvider.setBaseUrl(API_URL + '/1.0/');
 
         $stateProvider
             .state('main', {
                 url: '/main',
-                templateUrl: 'app/view/main.html'
+                templateUrl: 'app/view/main.html',
+                controller: 'subscriptionCtrl'  
             })
             .state('app', {
                 url: '/app',
                 abstract: true,
-                templateUrl: 'app/view/app.html'
+                templateUrl: 'app/view/app.html',
+                controller: 'analyticsCtrl'
             })
             .state('app.analytic', {
-                url: '/analytic',
+                url: '/analytic/:sr_id',
                 views: {
                     'appView': {
                         templateUrl: 'app/view/analytic/analytic.html'
                     }
                 }
+                
             })
             .state('app.deploy', {
                 url: '/deploy',

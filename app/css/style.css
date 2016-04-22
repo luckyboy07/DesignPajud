@@ -13359,7 +13359,6 @@ dl dd {
     display: inline-block;
     padding: 10px 35px
 }
-
 footer {
     text-align: center;
     color: #c9d1e0;
@@ -13741,4 +13740,23 @@ footer img {
         margin: 10px 0;
         display: block;
     }
+}
+.not-logged-in .navbar .search{
+  display:none;
+}
+  }
+  .not-logged-in .navbar .search input{
+    width: 218px;
+  }
+  .not-logged-in .navbar .search{
+    display:block;
+  }
+}
+@media (min-width: 1200px) {
+  .navbar .search input{
+    width: 513px;
+  }
+  .not-logged-in .navbar .search input{
+    width: 418px;
+  }
 }
