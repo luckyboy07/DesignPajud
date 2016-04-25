@@ -1,66 +1,76 @@
 'use strict';
 
-angular.module('myApp', ['ui.router', 'angular.morris-chart', 'restangular'])
+angular.module('myApp', ['ui.router', 'angular.morris-chart', 'restangular','angularMoment','ui.bootstrap'])
     .constant('API_URL', 'http://192.168.2.243:3000')
     .constant('API_VERSION', '/analytics/1.0')
     .config(function($provide, $stateProvider, $urlRouterProvider, API_URL, API_VERSION, RestangularProvider) {
         $provide.value('baseURL', API_URL);
-        RestangularProvider.setBaseUrl(API_URL + '/1.0/');
+        RestangularProvider.setBaseUrl(API_URL);
 
         $stateProvider
             .state('main', {
                 url: '/main',
-                templateUrl: 'app/view/main.html',
-                controller: 'subscriptionCtrl'  
+                templateUrl: 'app/view/main.html'
+
+            })
+            .state('main.accountlist', {
+                url: '/accountlist',
+                views: {
+                    'appView': {
+                        templateUrl: 'app/view/accountlist.html',
+                        controller: 'subscriptionCtrl'
+                    }
+                }
             })
             .state('app', {
                 url: '/app',
                 abstract: true,
                 templateUrl: 'app/view/app.html',
-                controller: 'analyticsCtrl'
+                 controller: 'analyticsCtrl'
+            
             })
             .state('app.analytic', {
                 url: '/analytic/:sr_id',
                 views: {
                     'appView': {
-                        templateUrl: 'app/view/analytic/analytic.html'
+                        templateUrl: 'app/view/analytic/analytic.html',
+                        controller: 'subscriptionDetailCtrl'
+                    }
+                }
+
+
+            })
+            .state('app.overview', {
+                url: '/overview/:gk_code',
+                views: {
+                    'appView': {
+                        templateUrl: 'app/view/AppOverview/appoverview.html',
+                        controller: 'subscriptionDetailCtrl'
                     }
                 },
-                controller: 'subscriptionDetailCtrl'
-                
-            })
-            .state('app.deploy', {
-                url: '/deploy',
-                templateUrl: 'app/view/Deploy/deploy.html',
-            })
-            .state('app.package', {
-                url: '/package',
-                templateUrl: 'app/view/Package/package.html',
+                parent: 'app'
+
             })
             .state('app.user', {
                 url: '/user',
-                templateUrl: 'app/view/Users/user.html'
+                templateUrl: 'app/view/Users/user.html',
             })
             .state('app.setting', {
-                url: '/setting',
-                templateUrl: 'app/view/settings/setting.html'
+                url: '/setting/:gk_code',
+                views: {
+                    'appView': {
+                        templateUrl: 'app/view/settings/setting.html',
+                    }
+                },
+                parent: 'app'
             })
-            .state('app.setting.blank', {
-                url: '/blank',
-                templateUrl: 'app/view/settings/view/blank.html',
-            })
-            .state('app.setting.sample', {
-                url: '/sample',
-                templateUrl: 'app/view/settings/view/sample.html',
+   
 
-            })
-            .state('app.setting.collaborators', {
-                url: '/collaborators',
-                templateUrl: 'app/view/settings/view/collaborators.html',
-            })
-
-
-        $urlRouterProvider.otherwise('/main');
+        $urlRouterProvider.otherwise('/main/accountlist');
+    })
+    .run(function($rootScope){
+        $rootScope.company = {};
+        $rootScope.total = {};
     })
     .directive('myContainer', function() {
 

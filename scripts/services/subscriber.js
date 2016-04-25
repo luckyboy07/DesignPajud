@@ -4,10 +4,10 @@ angular.module('myApp')
     .factory('subscriptionFctry', function(Restangular, API_URL) {
         return {
             getSubscriptionAccount: function() {
-                return Restangular.all('subscriptionaccounts' ).customGET();
+                return Restangular.all('/1.0/subscriptionaccounts' ).customGET();
             },
-            getAccountDetails : function(sr_id){
-            	return Restangular.all('subscriptionaccounts').customGET(sr_id);
+            getAccountDetails : function(sub_id){
+            	return Restangular.all('/1.0/subscriptionaccounts/'+sub_id).customGET();
 
             }
 

@@ -15,8 +15,7 @@
         <ul class="sidebar" ng-nicescroll>
             <li class="sidebar-main">
                 <a href="">
-                    Dashboard 
-                    
+               {{company.company_name}}
                 </a>
             </li>
             <side-bar></side-bar>
@@ -27,6 +26,6 @@
             <!-- Header Bar -->
             <nav-header></nav-header>
         </div>
-        <div ui-view name="appView"></div>
+        <div class  = "right-side" ui-view name="appView"></div>
     </div>
 </div>

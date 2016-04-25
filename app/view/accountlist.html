@@ -1,0 +1,24 @@
+<div id="content-view" class="ng-scope">
+    <nav-head></nav-head>
+    <div class="content">
+        <main class="container page-themes">
+            <div class="category-list">
+                <div class="category-header">
+                    <div class="form-group col-sm-10">
+                        <input type="text" name="q" class="form-control" placeholder="Search Account Here ">
+                    </div>
+                </div>
+                
+            </div>
+            <footer class="container">
+                <div id="featured">
+                    <div class="col-lg-4 col-xs-6" ng-repeat="account in accounts">
+                        <div class="feature">
+                            <a ng-click="getAccountDetail(account.sub_id)" class="feature">{{account.company_name}}</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+</div>
