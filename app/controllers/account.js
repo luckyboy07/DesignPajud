@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-    .controller('subscriptionCtrl', function($scope, $rootScope, $state, localStorageService, subscriptionFctry) {
+    .controller('subscriptionCtrl', function($scope, $rootScope, $state,subscriptionFctry) {
         $scope.accounts = [];
         subscriptionFctry.getSubscriptionAccount().then(function(data) {
             if (data.response.success) {
@@ -15,7 +15,7 @@ angular.module('myApp')
             subscriptionFctry.getAccountDetails(sr_id).then(function(data) {
                 if (data.statusCode == 200 && data.response.success) {
                     $rootScope.company = data.response.result;
-                    localStorageService.set('currentCompany', JSON.stringify(data.response.result));
+                    subscriptionFctry.setCurrentCompany(data.response.result);
                     $state.go('app.analytic');
                 }
             });

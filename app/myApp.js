@@ -74,10 +74,14 @@ angular.module('myApp', ['ui.router', 'angular.morris-chart', 'restangular', 'an
 
         $urlRouterProvider.otherwise('/main/accountlist');
     })
-    .run(function($rootScope) {
+    .run(function($rootScope, subscriptionFctry) {
         $rootScope.company = {};
         $rootScope.total = {};
         $rootScope.linedata = {};
+
+        $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams) {
+            $rootScope.company = subscriptionFctry.getCurrentCompany();
+        });
     })
     .directive('myContainer', function() {
 

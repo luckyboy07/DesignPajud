@@ -63,7 +63,10 @@ gulp.task('serve', function() {
     browserSync.init({
         notify: false,
         port: 9001,
-        server: "./"
+        server: "./",
+        ui: {
+            port: 12345
+        }
     });
 
     gulp.watch(['index.html', 'js/**/*.*', 'css/*.*', 'app/**/*.*', 'scripts/**/*.*'])
