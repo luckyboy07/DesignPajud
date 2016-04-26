@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp', ['ui.router', 'angular.morris-chart', 'restangular','angularMoment','ui.bootstrap'])
+angular.module('myApp', ['ui.router', 'angular.morris-chart', 'restangular', 'angularMoment', 'ui.bootstrap', 'LocalStorageModule'])
     .constant('API_URL', 'http://192.168.2.243:3000')
     .constant('API_VERSION', '/analytics/1.0')
     .config(function($provide, $stateProvider, $urlRouterProvider, API_URL, API_VERSION, RestangularProvider) {
@@ -26,11 +26,11 @@ angular.module('myApp', ['ui.router', 'angular.morris-chart', 'restangular','ang
                 url: '/app',
                 abstract: true,
                 templateUrl: 'app/view/app.html',
-                 controller: 'analyticsCtrl'
-            
+                controller: 'analyticsCtrl'
+
             })
             .state('app.analytic', {
-                url: '/analytic/:sr_id',
+                url: '/analytic',
                 views: {
                     'appView': {
                         templateUrl: 'app/view/analytic/analytic.html',
@@ -41,7 +41,7 @@ angular.module('myApp', ['ui.router', 'angular.morris-chart', 'restangular','ang
 
             })
             .state('app.overview', {
-                url: '/overview/:gk_code',
+                url: '/overview',
                 views: {
                     'appView': {
                         templateUrl: 'app/view/AppOverview/appoverview.html',
@@ -51,9 +51,15 @@ angular.module('myApp', ['ui.router', 'angular.morris-chart', 'restangular','ang
                 parent: 'app'
 
             })
-            .state('app.user', {
-                url: '/user',
-                templateUrl: 'app/view/Users/user.html',
+            .state('app.behavior', {
+                url: '/behavior',
+                views: {
+                    'appView': {
+                        templateUrl: 'app/view/Behavior/behavior.html',
+                        controller: 'behaviorCtrl'
+                    }
+                },
+                parent: 'app'
             })
             .state('app.setting', {
                 url: '/setting/:gk_code',
@@ -64,13 +70,14 @@ angular.module('myApp', ['ui.router', 'angular.morris-chart', 'restangular','ang
                 },
                 parent: 'app'
             })
-   
+
 
         $urlRouterProvider.otherwise('/main/accountlist');
     })
-    .run(function($rootScope){
+    .run(function($rootScope) {
         $rootScope.company = {};
         $rootScope.total = {};
+        $rootScope.linedata = {};
     })
     .directive('myContainer', function() {
 
