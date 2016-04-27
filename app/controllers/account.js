@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-    .controller('subscriptionCtrl', function($scope, $rootScope, $state,subscriptionFctry) {
+    .controller('subscriptionCtrl', function($scope, $rootScope, $state, subscriptionFctry) {
         $scope.accounts = [];
         subscriptionFctry.getSubscriptionAccount().then(function(data) {
             if (data.response.success) {
@@ -16,10 +16,11 @@ angular.module('myApp')
                 if (data.statusCode == 200 && data.response.success) {
                     $rootScope.company = data.response.result;
                     subscriptionFctry.setCurrentCompany(data.response.result);
-                    $state.go('app.analytic');
+                    $state.go('app.dashboard');
                 }
             });
         };
+
     })
     .controller('subscriptionDetailCtrl', function($timeout, $scope, $rootScope, $state, $stateParams, $uibModal, localStorageService, subscriptionFctry, analyticFctry) {
         $scope.totals = {};
@@ -33,7 +34,7 @@ angular.module('myApp')
         $scope.openDate = function() {
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/view/analytic/analytic.modal.html',
+                templateUrl: 'app/view/Behavior/Overview/Overview.modal.html',
                 controller: 'ModalInstanceCtrl',
                 size: 'sm',
                 resolve: {
@@ -56,46 +57,56 @@ angular.module('myApp')
 
 
                 })
-                console.log('date 2:', $scope.dtFrom);
+                $scope.startdate = moment($scope.dtFrom).format('YYYY-MM-DD');
+                $scope.enddate = moment($scope.dtTo).format('YYYY-MM-DD');
+                console.log('startdate:', $scope.startdate);
+                console.log('enddate:', $scope.enddate);
+
+                $scope.populateGraph($scope.startdate,$scope.enddate);
             });
         };
 
-        var currentCompany = localStorageService.get('currentCompany');
-        currentCompany = JSON.parse(currentCompany);
-        if (currentCompany) {
-            analyticFctry.getAnalyticDetails(currentCompany.gk_code, '2016-04-11', '2016-04-30').then(function(data) {
-                if (data.statusCode == 200 && data.response) {
-                    $scope.totals = data.response.totalsForAllResults;
-                    console.log('$scope.totals:', data.response.rows);
-                    var chartData = data.response.rows;
+        $scope.populateGraph = function(startdate, enddate) {
+            var currentCompany = localStorageService.get('currentCompany');
+            currentCompany = JSON.parse(currentCompany);
+            if (currentCompany) {
+                analyticFctry.getAnalyticDetails(currentCompany.gk_code, startdate, enddate).then(function(data) {
+                    if (data.statusCode == 200 && data.response) {
+                        $scope.totals = data.response.totalsForAllResults;
+                        $scope.totals.eventsPerSession = _.floor($scope.totals.eventsPerSession, 2);
+                        console.log('$scope.totals:', $scope.totals);
+                        var chartData = data.response.rows;
 
-                    _.each(chartData, function(row) {
-                        row.DayIndex = moment(row.DayIndex).format('YYYY-MM-DD');
-                    });
-
-                    $timeout(function() {
-                        $scope.$apply(function() {
-                            $scope.linedata = {
-                                xkey: 'DayIndex',
-                                ykeys: ['TotalEvents'],
-                                labels: ['Total Events'],
-                                lineColors: ['#3c8dbc'],
-                                data: chartData
-                            };
-
-                            console.log('data', $scope.linedata);
+                        _.each(chartData, function(row) {
+                            row.DayIndex = moment(row.DayIndex).format('YYYY-MM-DD');
                         });
-                    }, 100);
 
-                }
-            });
-            analyticFctry.getAnalyticEvents(currentCompany.gk_code, '2016-04-11', '2016-04-30').then(function(data) {
-                if (data.statusCode == 200 && data.response) {
-                    $scope.events = data.response.rowData.eventsCategory;
-                    // console.log('events', $scope.events);
-                }
-            });
+                        $timeout(function() {
+                            $scope.$apply(function() {
+                                $scope.linedata = {
+                                    xkey: 'DayIndex',
+                                    ykeys: ['TotalEvents'],
+                                    labels: ['Total Events'],
+                                    lineColors: ['#3c8dbc'],
+                                    data: chartData
+                                };
+
+                                console.log('data', $scope.linedata);
+                            });
+                        }, 100);
+
+                    }
+                });
+                analyticFctry.getAnalyticEvents(currentCompany.gk_code, startdate, enddate).then(function(data) {
+                    if (data.statusCode == 200 && data.response) {
+                        $scope.events = data.response.rowData.eventsCategory;
+                        // console.log('events', $scope.events);
+                    }
+                });
+            }
         }
+
+        // $scope.populateGraph($scope.dtFrom,$scope.enddate);
     })
     .controller('ModalInstanceCtrl', function($scope, $uibModalInstance, analyticsDate) {
 

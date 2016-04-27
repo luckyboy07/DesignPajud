@@ -1,10 +1,10 @@
-'user strict';
+'use strict';
 
 angular.module('myApp')
-    .controller('behaviorCtrl', function($scope, $rootScope, localStorageService, $uibModal, $timeout, analyticBehaviorCtrl) {
-        $scope.pages = {};
+    .controller('appoverviewCtrl', function($scope, $rootScope, localStorageService, $uibModal, $timeout, appoverview) {
+        $scope.overviews = {};
+        $scope.infos = {};
         $scope.gk_code = $rootScope.company.gk_code;
-        console.log('currentCompany: ', $scope.gk_code);
 
         $scope.dtFrom = new Date();
         var dateTo = new Date();
@@ -13,7 +13,7 @@ angular.module('myApp')
         $scope.openDate = function() {
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/view/Behavior/Page/page.modal.html',
+                templateUrl: 'app/view/AppOverview/Overview/overview.modal.html',
                 controller: 'ModalInstanceCtrl',
                 size: 'sm',
                 resolve: {
@@ -45,34 +45,32 @@ angular.module('myApp')
             });
         }
         $scope.populateGraph = function(startdate, enddate) {
-            analyticBehaviorCtrl.getBehaviorDetails($scope.gk_code, startdate, enddate).then(function(data) {
+            appoverview.getAppoverviewDetail($scope.gk_code, startdate, enddate).then(function(data) {
                 if (data.statusCode == 200 && data.response) {
-                    console.log('events:', data.response.rowData.pagesData);
-                    $scope.pages = data.response.rowData.pagesData;
-                    var chartData = data.response.rowData.pagesOverviewData.rows;
-                    console.log('chartData:', chartData);
-                    _.each(chartData, function(row) {
-                        row.DayIndex = moment(row.DayIndex).format('YYYY-MM-DD');
-                    });
-                    $timeout(function() {
-                        $scope.$apply(function() {
-                            $scope.linedata = {
-                                xkey: 'DayIndex',
-                                ykeys: ['TotalEvents'],
-                                labels: ['Total Events'],
-                                lineColors: ['#3c8dbc'],
-                                data: chartData
-                            };
-
-                            console.log('data', $scope.linedata);
-                        });
-                    }, 100);
+                    $scope.overviews = data.response.devicesOverviewData.rows;
+                    $scope.infos = data.response.devicesInfoData;
+                    console.log(' $scope.infos', $scope.infos);
                 }
 
+                var chartData = data.response.devicesOverviewData.rows;
+                _.each(chartData, function(row) {
+                    row.DayIndex = moment(row.DayIndex).format('YYYY-MM-DD');
+                });
 
-            })
+                $timeout(function() {
+                    $scope.$apply(function() {
+                        $scope.linedata = {
+                            xkey: 'DayIndex',
+                            ykeys: ['Sessions'],
+                            labels: ['Sessions'],
+                            lineColors: ['#3c8dbc'],
+                            data: chartData
+                        };
+                    });
+                    console.log('$scope.linedata:', $scope.linedata);
+                }, 100);
+            });
         }
-
 
     })
     .controller('ModalInstanceCtrl', function($scope, $uibModalInstance, analyticsDate) {

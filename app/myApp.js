@@ -37,40 +37,137 @@ angular.module('myApp', ['ui.router', 'angular.morris-chart', 'restangular', 'an
                         controller: 'subscriptionDetailCtrl'
                     }
                 }
-
-
             })
-            .state('app.overview', {
-                url: '/overview',
+            .state('app.dashboard', {
+                url: '/dashboard',
                 views: {
                     'appView': {
-                        templateUrl: 'app/view/AppOverview/appoverview.html',
-                        controller: 'subscriptionDetailCtrl'
+                        templateUrl: 'app/view/Dashboard/dashboard.html'
+                    }
+                }
+            })
+            .state('app.appoverview', {
+                url: '/appoverview',
+                views: {
+                    'appView': {
+                        templateUrl: 'app/view/AppOverview/Overview/overview.html',
+                        controller: 'appoverviewCtrl'
                     }
                 },
                 parent: 'app'
 
             })
-            .state('app.behavior', {
-                url: '/behavior',
+
+        .state('app.appevents', {
+                url: '/events',
                 views: {
                     'appView': {
-                        templateUrl: 'app/view/Behavior/behavior.html',
+                        templateUrl: 'app/view/AppOverview/Events/events.html',
+
+                    }
+                },
+                parent: 'app'
+
+            })
+            .state('app.appscreens', {
+                url: '/screens',
+                views: {
+                    'appView': {
+                        templateUrl: 'app/view/AppOverview/Screens/screens.html',
+                        
+                    }
+                },
+                parent: 'app'
+
+            })
+            .state('app.audienceoverview', {
+                url: '/audienceoverview',
+                views: {
+                    'appView': {
+                        templateUrl: 'app/view/Audience/Overview/overview.html',
+
+                    }
+                },
+                parent: 'app'
+
+            })
+            .state('app.audienceusers', {
+                url: '/users',
+                views: {
+                    'appView': {
+                        templateUrl: 'app/view/Audience/Users/users.html',
+
+                    }
+                },
+                parent: 'app'
+
+            })
+            .state('app.audiencegeolanguage', {
+                url: '/geolanguage',
+                views: {
+                    'appView': {
+                        templateUrl: 'app/view/Audience/Geo-language/Geo-language.html',
+
+                    }
+                },
+                parent: 'app'
+
+            })
+            .state('app.audiencegeolocation', {
+                url: '/geolocation',
+                views: {
+                    'appView': {
+                        templateUrl: 'app/view/Audience/Geo-location/Geo-location.html',
+
+                    }
+                },
+                parent: 'app'
+
+            })
+             .state('app.audiencenetwork', {
+                url: '/network',
+                views: {
+                    'appView': {
+                        templateUrl: 'app/view/Audience/Network/network.html',
+
+                    }
+                },
+                parent: 'app'
+
+            })
+             .state('app.audiencedevices', {
+                url: '/devices',
+                views: {
+                    'appView': {
+                        templateUrl: 'app/view/Audience/Devices/devices.html',
+
+                    }
+                },
+                parent: 'app'
+
+            })
+             .state('app.behavioroverview', {
+                url: '/behavioroverview',
+                views: {
+                    'appView': {
+                        templateUrl: 'app/view/Behavior/Overview/overview.html',
+                        controller: 'subscriptionDetailCtrl'
+                    }
+                },
+                parent: 'app'
+            })
+            .state('app.behaviorpages', {
+                url: '/behaviorpage',
+                views: {
+                    'appView': {
+                        templateUrl: 'app/view/Behavior/Page/page.html',
                         controller: 'behaviorCtrl'
                     }
                 },
                 parent: 'app'
             })
-            .state('app.setting', {
-                url: '/setting/:gk_code',
-                views: {
-                    'appView': {
-                        templateUrl: 'app/view/settings/setting.html',
-                    }
-                },
-                parent: 'app'
-            })
 
+            
 
         $urlRouterProvider.otherwise('/main/accountlist');
     })
